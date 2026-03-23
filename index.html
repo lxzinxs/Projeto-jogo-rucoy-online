@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rucoy Guild Tracker</title>
+    <style>
+        /* Variáveis de Cores RPG */
+        :root {
+            --bg-body: #121212;
+            --bg-card: #1e1e1e;
+            --border-color: #333;
+            --accent-green: #00ff00;
+            --text-main: #e0e0e0;
+            --text-dim: #a0a0a0;
+            --input-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 { color: var(--accent-green); text-shadow: 2px 2px #000; }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Card de Formulário */
+        .card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .form-group { margin-bottom: 15px; }
+
+        label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem; }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        /* Estilo do Slider de 10 em 10% */
+        .slider-container {
+            background: #151515;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            accent-color: var(--accent-green);
+            cursor: pointer;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 5px;
+        }
+
+        .percent-display {
+            text-align: center;
+            font-weight: bold;
+            color: var(--accent-green);
+            font-size: 1.1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-green);
+            border: none;
+            border-radius: 4px;
+            color: #000;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover { background: #00cc00; transform: scale(1.02); }
+
+        /* Tabela de Histórico */
+        .history-section { margin-top: 30px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th { background: #252525; color: var(--accent-green); }
+
+        .btn-view {
+            background: #444;
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Rucoy Tracker ⚔️</h1>
+        
+        <section class="card">
+            <div class="form-group">
+                <label>Nome do Personagem</label>
+                <input type="text" id="charName" placeholder="Ex: Ricardo01">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="form-group">
+                    <label>Level Atual</label>
+                    <input type="number" id="level" placeholder="272">
+                </div>
+                <div class="form-group">
+                    <label>Total XP</label>
+                    <input type="number" id="totalXp" placeholder="93977031">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Skill Principal (Level)</label>
+                <input type="number" id="skillLevel" placeholder="301">
+                
+                <div class="slider-container">
+                    <label style="color: var(--text-dim);">Progresso da Barra:</label>
+                    <input type="range" id="skillRange" min="0" max="100" value="0" step="10">
+                    <div class="slider-labels">
+                        <span>0%</span><span>50%</span><span>100%</span>
+                    </div>
+                    <div class="percent-display" id="percShow">0%</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Print de Prova (Screenshot)</label>
+                <input type="file" id="screenshot" accept="image/*">
+            </div>
+
+            <button type="button" id="btnSalvar">Registrar Evolução</button>
+        </section>
+
+        <section class="history-section">
+            <h3>Histórico de Envios</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Player</th>
+                        <th>Level</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="historyBody">
+                    <tr>
+                        <td style="color: var(--text-dim); text-align: center;" colspan="4">Nenhum registro encontrado.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+</body>
+</html>
