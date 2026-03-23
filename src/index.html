@@ -141,23 +141,23 @@
         <section class="card">
             <div class="form-group">
                 <label>Nome do Personagem</label>
-                <input type="text" id="charName" placeholder="Ex: Ricardo01">
+                <input type="text" id="char-name" placeholder="Nickname">
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                 <div class="form-group">
                     <label>Level Atual</label>
-                    <input type="number" id="level" placeholder="272">
+                    <input type="number" id="level" placeholder="1">
                 </div>
                 <div class="form-group">
                     <label>Total XP</label>
-                    <input type="number" id="totalXp" placeholder="93977031">
+                    <input type="number" id="total-xp" placeholder="10">
                 </div>
             </div>
 
             <div class="form-group">
-                <label>Skill Principal (Level)</label>
-                <input type="number" id="skillLevel" placeholder="301">
+                <label>Skill</label>
+                <input type="number" id="skill-level" placeholder="100">
                 
                 <div class="slider-container">
                     <label style="color: var(--text-dim);">Progresso da Barra:</label>
@@ -174,7 +174,7 @@
                 <input type="file" id="screenshot" accept="image/*">
             </div>
 
-            <button type="button" id="btnSalvar">Registrar Evolução</button>
+            <button type="button" id="btnSalvar" onclick="registrar()">Registrar Evolução</button>
         </section>
 
         <section class="history-section">
@@ -196,6 +196,8 @@
             </table>
         </section>
     </div>
+
+    <script src="app.js"></script>
 
 </body>
 </html>
